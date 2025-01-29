@@ -10,7 +10,7 @@ process DEEPTOOLS_READCOV_NORM {
 
     script:
 
-    def  = params.dt_norm? "--normalizeUsing ${params.deeptools_norm_method}" : ""
+    def dt_norm = params.deeptools_norm_method? "--normalizeUsing ${params.deeptools_norm_method}" : ""
 
     """
     bamCoverage -b ${bam} -o ${sample}.bw \\
