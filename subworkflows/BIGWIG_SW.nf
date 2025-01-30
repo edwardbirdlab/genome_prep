@@ -7,7 +7,7 @@ Subworkflow for doanloading of mutiple AMR databases
 include { DEEPTOOLS_READCOV_NORM as DEEPTOOLS_READCOV_NORM } from '../modules/DEEPTOOLS.nf'
 include { DEEPTOOLS_READCOV as DEEPTOOLS_READCOV } from '../modules/DEEPTOOLS.nf'
 include { UCSC_BIGWIGMERGE as UCSC_BIGWIGMERGE } from '../modules/UCSC.nf'
-include { SAMTOOLS_INDEX as SAMTOOLS_INDEX } from '../modules/SAMTOOlS.nf'
+include { SAMTOOLS_INDEX as SAMTOOLS_INDEX } from '../modules/SAMTOOLS.nf'
 
 
 workflow BIGWIG_SW {
