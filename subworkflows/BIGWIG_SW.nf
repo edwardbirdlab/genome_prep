@@ -9,6 +9,7 @@ include { DEEPTOOLS_READCOV as DEEPTOOLS_READCOV } from '../modules/DEEPTOOLS.nf
 include { UCSC_BIGWIGMERGE as UCSC_BIGWIGMERGE } from '../modules/UCSC.nf'
 include { SAMTOOLS_INDEX as SAMTOOLS_INDEX } from '../modules/SAMTOOLS.nf'
 include { SAMTOOLS_STATS as SAMTOOLS_STATS } from '../modules/SAMTOOLS.nf'
+include { UCSC_BIGWIGINFO as UCSC_BIGWIGINFO } from '../modules/UCSC.nf'
 
 
 workflow BIGWIG_SW {
@@ -25,6 +26,8 @@ workflow BIGWIG_SW {
         DEEPTOOLS_READCOV(SAMTOOLS_INDEX.out.index)
 
         DEEPTOOLS_READCOV_NORM(SAMTOOLS_INDEX.out.index)
+
+        UCSC_BIGWIGINFO(DEEPTOOLS_READCOV.out.bw)
 
         UCSC_BIGWIGMERGE(DEEPTOOLS_READCOV.out.bw.collect())
 
