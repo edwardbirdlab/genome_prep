@@ -19,9 +19,11 @@ workflow BIGWIG_SW {
 
 
     main:
-        SAMTOOLS_STATS(bams)
+        SAMTOOLS_REHEADER(bams)
 
-        SAMTOOLS_INDEX(bams)
+        SAMTOOLS_STATS(SAMTOOLS_REHEADER.out.fix)
+
+        SAMTOOLS_INDEX(SAMTOOLS_REHEADER.out.fix)
 
         DEEPTOOLS_READCOV(SAMTOOLS_INDEX.out.index)
 

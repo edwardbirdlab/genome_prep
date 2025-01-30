@@ -10,10 +10,10 @@ process UCSC_BIGWIGMERGE {
     script:
 
     """
-    bigWigMerge *.bw ${params.project_name}_merged.bw
+    bigWigMerge *.bw ${params.project_name}_merged.gedgraph
     """
 }
-
+    
 process UCSC_BIGWIGINFO {
     label 'midmem'
     container 'ebird013/ucsc:1.0_amd64'
@@ -26,7 +26,6 @@ process UCSC_BIGWIGINFO {
     script:
 
     """
-    bigWigInfo ${alignment} > ${sample}_bigwiginfo.txt
-    bigWigInfo -chroms ${alignment} > ${sample}_bigwiginfo_chroms.txt
+    bigWigInfo -chroms ${alignment} > ${sample}_bigwiginfo.txt
     """
 }
