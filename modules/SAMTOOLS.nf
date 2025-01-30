@@ -5,7 +5,7 @@ process SAMTOOLS_INDEX {
     input:
         tuple val(sample), file(alignment)
     output:
-        tuple val(sample), path("${alignment}), path("${alignment}.bai"), emit: index
+        tuple val(sample), path("${alignment}"), path("${alignment}.bai"), emit: index
 
     script:
 
