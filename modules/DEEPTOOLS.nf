@@ -13,7 +13,7 @@ process DEEPTOOLS_READCOV_NORM {
     def dt_norm = params.deeptools_norm_method? "--normalizeUsing ${params.deeptools_norm_method}" : ""
 
     """
-    bamCoverage -b ${bam} -o ${sample}.bw \\
+    bamCoverage -b ${bam} -o ${sample}_normalized.bw \\
     $dt_norm
 
     cat <<-END_VERSIONS > versions.yml
