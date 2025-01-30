@@ -3,7 +3,7 @@ process DEEPTOOLS_READCOV_NORM {
     container 'quay.io/biocontainers/deeptools:3.5.5--pyhdfd78af_0'
 
     input:
-        tuple val(sample), file(bam)
+        tuple val(sample), file(bam), path(index)
     output:
         tuple val(sample), path("${sample}_normalized.bw"), emit: bw
         path("versions.yml"), emit: versions
@@ -28,7 +28,7 @@ process DEEPTOOLS_READCOV {
     container 'quay.io/biocontainers/deeptools:3.5.5--pyhdfd78af_0'
 
     input:
-        tuple val(sample), file(bam)
+        tuple val(sample), file(bam), path(index)
     output:
         tuple val(sample), path("${sample}.bw"), emit: bw
         path("versions.yml"), emit: versions
