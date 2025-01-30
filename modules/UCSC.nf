@@ -1,6 +1,6 @@
 process UCSC_BIGWIGMERGE {
     label 'midmem'
-    container 'ebird013/ucsc_amd64:1.0'
+    container 'ebird013/ucsc:1.0_amd64'
 
     input:
         file(wigs)
