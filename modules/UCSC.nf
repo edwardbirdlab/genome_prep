@@ -5,7 +5,7 @@ process UCSC_BIGWIGMERGE {
     input:
         file(wigs)
     output:
-        path("${params.project_name}_merged.bw"), emit: bw
+        path("${params.project_name}_merged.gedgraph"), emit: bw
 
     script:
 
