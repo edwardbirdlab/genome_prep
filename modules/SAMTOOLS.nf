@@ -57,7 +57,7 @@ process SAMTOOLS_REHEADER {
     """
     samtools view -H ${alignment} > header.txt
     sed -i 's/SN:lcl|/SN:/' header.txt
-    samtools reheader header.txt ${alignment} > ${samples}_fixed.bam
+    samtools reheader header.txt ${alignment} > ${sample}_fixed.bam
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
