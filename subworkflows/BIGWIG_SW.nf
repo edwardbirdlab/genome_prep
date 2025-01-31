@@ -10,6 +10,7 @@ include { UCSC_BIGWIGMERGE as UCSC_BIGWIGMERGE } from '../modules/UCSC.nf'
 include { SAMTOOLS_INDEX as SAMTOOLS_INDEX } from '../modules/SAMTOOLS.nf'
 include { SAMTOOLS_STATS as SAMTOOLS_STATS } from '../modules/SAMTOOLS.nf'
 include { UCSC_BIGWIGINFO as UCSC_BIGWIGINFO } from '../modules/UCSC.nf'
+include { SAMTOOLS_REHEADER as SAMTOOLS_REHEADER } from '../modules/SAMTOOLS.nf'
 
 
 workflow BIGWIG_SW {
