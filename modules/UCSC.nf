@@ -1,5 +1,5 @@
 process UCSC_BIGWIGMERGE {
-    label 'midmem'
+    label 'verylow'
     container 'ebird013/ucsc:1.0_amd64'
 
     input:
@@ -15,7 +15,7 @@ process UCSC_BIGWIGMERGE {
 }
     
 process UCSC_BIGWIGINFO {
-    label 'midmem'
+    label 'verylow'
     container 'ebird013/ucsc:1.0_amd64'
 
     input:

@@ -1,5 +1,5 @@
 process DEEPTOOLS_READCOV_NORM {
-    label 'midmem'
+    label 'verylow'
     container 'quay.io/biocontainers/deeptools:3.5.5--pyhdfd78af_0'
 
     input:
@@ -24,7 +24,7 @@ process DEEPTOOLS_READCOV_NORM {
 }
 
 process DEEPTOOLS_READCOV {
-    label 'midmem'
+    label 'verylow'
     container 'quay.io/biocontainers/deeptools:3.5.5--pyhdfd78af_0'
 
     input:
