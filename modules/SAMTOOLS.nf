@@ -49,7 +49,7 @@ process SAMTOOLS_REHEADER {
     input:
         tuple val(sample), file(alignment)
     output:
-        tuple val(sample), path("${samples}_fixed.bam"), emit: fix
+        tuple val(sample), path("${sample}_fixed.bam"), emit: fix
         path("versions.yml"), emit: versions
 
     script:
