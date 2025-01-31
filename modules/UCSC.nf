@@ -21,7 +21,7 @@ process UCSC_BIGWIGINFO {
     input:
         tuple val(sample), file(alignment)
     output:
-        tuple val(sample), path("${sample}_bigwiginfo.txt"), path("${sample}_bigwiginfo_chroms.txt"), emit: info
+        tuple val(sample), path("${sample}_bigwiginfo.txt"), emit: info
 
     script:
 
