@@ -17,12 +17,14 @@ include { SAMTOOLS_SAM2BAM as SAMTOOLS_SAM2BAM } from '../modules/SAMTOOLS.nf'
 workflow BIGWIG_SW {
     
     take:
-        bams            //    channel: [ val(sample), path("somthing_1.bam")]
-
+        ch_fastqs                // channel: [val(sample), [fastq_1, fastq_2]]
+        ch_hostgen                  // channel: [val(sample), fasta]
 
     main:
 
-        STAR(ch_star)
+        ch_for_star= ch_fastqs_trim.join(ch_hostgen)
+
+        STAR(ch_for_star)
 
         SAMTOOLS_SAM2BAM(STAR.out.sam)
 
