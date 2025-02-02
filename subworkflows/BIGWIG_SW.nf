@@ -22,7 +22,7 @@ workflow BIGWIG_SW {
 
     main:
 
-        ch_for_star= ch_fastqs_trim.join(ch_hostgen)
+        ch_for_star= ch_fastqs.join(ch_hostgen)
 
         STAR(ch_for_star)
 
