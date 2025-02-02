@@ -10,7 +10,8 @@ include { UCSC_BIGWIGMERGE as UCSC_BIGWIGMERGE } from '../modules/UCSC.nf'
 include { SAMTOOLS_INDEX as SAMTOOLS_INDEX } from '../modules/SAMTOOLS.nf'
 include { SAMTOOLS_STATS as SAMTOOLS_STATS } from '../modules/SAMTOOLS.nf'
 include { UCSC_BIGWIGINFO as UCSC_BIGWIGINFO } from '../modules/UCSC.nf'
-include { SAMTOOLS_REHEADER as SAMTOOLS_REHEADER } from '../modules/SAMTOOLS.nf'
+include { STAR as STAR } from '../modules/STAR.nf'
+include { SAMTOOLS_SAM2BAM as SAMTOOLS_SAM2BAM } from '../modules/SAMTOOLS.nf'
 
 
 workflow BIGWIG_SW {
@@ -20,11 +21,14 @@ workflow BIGWIG_SW {
 
 
     main:
-        SAMTOOLS_REHEADER(bams)
 
-        SAMTOOLS_STATS(SAMTOOLS_REHEADER.out.fix)
+        STAR(ch_star)
 
-        SAMTOOLS_INDEX(SAMTOOLS_REHEADER.out.fix)
+        SAMTOOLS_SAM2BAM(STAR.out.sam)
+
+        SAMTOOLS_STATS(SAMTOOLS_SAM2BAM.out.bam)
+
+        SAMTOOLS_INDEX(SAMTOOLS_SAM2BAM.out.bam)
 
         DEEPTOOLS_READCOV(SAMTOOLS_INDEX.out.index)
 

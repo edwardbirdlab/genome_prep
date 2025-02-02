@@ -65,3 +65,25 @@ process SAMTOOLS_REHEADER {
     END_VERSIONS 
     """
 }
+
+process SAMTOOLS_SAM2BAM{
+    label 'verylow'
+    container 'ebird013/samtools:1.17'
+
+    input:
+        tuple val(sample), file(alignment)
+    output:
+        tuple val(sample), path("${sample}.bam"), emit: bam
+        path("versions.yml"), emit: versions
+
+    script:
+
+    """
+    samtools view -bS {alignment} > {sample}.bam
+
+    cat <<-END_VERSIONS > versions.yml
+    "${task.process}":
+        Samtools: \$(samtools --version 2>&1 | grep "samtools " | sed -e "s/samtools //g")
+    END_VERSIONS 
+    """
+}
