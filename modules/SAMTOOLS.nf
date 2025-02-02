@@ -79,7 +79,7 @@ process SAMTOOLS_SAM2BAM{
     script:
 
     """
-    samtools view -bS {alignment} > {sample}.bam
+    samtools view -bS ${alignment} > ${sample}.bam
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
