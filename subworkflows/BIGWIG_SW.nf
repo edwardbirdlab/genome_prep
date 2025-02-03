@@ -40,7 +40,7 @@ workflow BIGWIG_SW {
 
         UCSC_BIGWIGINFO(DEEPTOOLS_READCOV.out.bw)
 
-        UCSC_BIGWIGMERGE(DEEPTOOLS_READCOV.out.bw.collect())
+        //UCSC_BIGWIGMERGE(DEEPTOOLS_READCOV.out.bw.collect())
 
 
 }
