@@ -87,3 +87,25 @@ process SAMTOOLS_SAM2BAM{
     END_VERSIONS 
     """
 }
+
+process SAMTOOLS_BAMSORT{
+    label 'samtoolssort'
+    container 'ebird013/samtools:1.17'
+
+    input:
+        tuple val(sample), file(alignment)
+    output:
+        tuple val(sample), path("${sample}_sorted.bam"), emit: sort
+        path("versions.yml"), emit: versions
+
+    script:
+
+    """
+    samtools sort -n -m ${task.memory.toGiga()}G -@ ${task.cpus} ${alignment} -o ${sample}_sorted.bam
+
+    cat <<-END_VERSIONS > versions.yml
+    "${task.process}":
+        Samtools: \$(samtools --version 2>&1 | grep "samtools " | sed -e "s/samtools //g")
+    END_VERSIONS 
+    """
+}

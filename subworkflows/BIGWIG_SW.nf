@@ -12,7 +12,7 @@ include { SAMTOOLS_STATS as SAMTOOLS_STATS } from '../modules/SAMTOOLS.nf'
 include { UCSC_BIGWIGINFO as UCSC_BIGWIGINFO } from '../modules/UCSC.nf'
 include { STAR as STAR } from '../modules/STAR.nf'
 include { SAMTOOLS_SAM2BAM as SAMTOOLS_SAM2BAM } from '../modules/SAMTOOLS.nf'
-
+include { SAMTOOLS_BAMSORT as SAMTOOLS_BAMSORT } from '../modules/SAMTOOLS.nf'
 
 workflow BIGWIG_SW {
     
@@ -28,7 +28,9 @@ workflow BIGWIG_SW {
 
         SAMTOOLS_SAM2BAM(STAR.out.sam)
 
-        SAMTOOLS_STATS(SAMTOOLS_SAM2BAM.out.bam)
+        SAMTOOLS_BAMSORT(SAMTOOLS_SAM2BAM.out.bam)
+
+        SAMTOOLS_STATS(SAMTOOLS_BAMSORT.out.sort)
 
         SAMTOOLS_INDEX(SAMTOOLS_SAM2BAM.out.bam)
 
