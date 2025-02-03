@@ -101,7 +101,7 @@ process SAMTOOLS_BAMSORT{
     script:
 
     """
-    samtools sort -n -m ${task.memory.toGiga()}G -@ ${task.cpus} ${alignment} -o ${sample}_sorted.bam
+    samtools sort -m ${task.memory.toGiga()}G -@ ${task.cpus} ${alignment} -o ${sample}_sorted.bam
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
