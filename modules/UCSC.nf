@@ -5,7 +5,7 @@ process UCSC_BIGWIGMERGE {
     input:
         file(wigs)
     output:
-        path("${params.project_name}_merged.gedgraph"), emit: bw
+        path("${params.project_name}_merged.gedgraph"), emit: bed
 
     script:
 
@@ -27,5 +27,38 @@ process UCSC_BIGWIGINFO {
 
     """
     bigWigInfo -chroms ${alignment} > ${sample}_bigwiginfo.txt
+    """
+}
+
+process UCSC_GET_SIZE {
+    label 'verylow'
+    container 'ebird013/ucsc:1.0_amd64'
+
+    input:
+        file(fasta)
+    output:
+        path("${params.project_name}_chrom.sizes"), emit: sizes
+
+    script:
+
+    """
+    faSize -detailed -tab ${fasta} > ${params.project_name}_chrom.sizes
+    """
+}
+
+process UCSC_ {
+    label 'verylow'
+    container 'ebird013/ucsc:1.0_amd64'
+
+    input:
+        file(bed)
+        file(sizes)
+    output:
+        path("${params.project_name}_merged.bw"), emit: bw
+
+    script:
+
+    """
+    bedGraphToBigWig ${bed} ${sizes} ${params.project_name}_merged.bw
     """
 }

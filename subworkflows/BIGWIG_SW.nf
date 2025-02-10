@@ -13,6 +13,8 @@ include { UCSC_BIGWIGINFO as UCSC_BIGWIGINFO } from '../modules/UCSC.nf'
 include { STAR as STAR } from '../modules/STAR.nf'
 include { SAMTOOLS_SAM2BAM as SAMTOOLS_SAM2BAM } from '../modules/SAMTOOLS.nf'
 include { SAMTOOLS_BAMSORT as SAMTOOLS_BAMSORT } from '../modules/SAMTOOLS.nf'
+include { UCSC_GET_SIZE as UCSC_GET_SIZE } from '../modules/UCSC.nf'
+include { UCSC_BED2BIGWIG as UCSC_BED2BIGWIG } from '../modules/UCSC.nf'
 
 workflow BIGWIG_SW {
     
@@ -41,6 +43,10 @@ workflow BIGWIG_SW {
         UCSC_BIGWIGINFO(DEEPTOOLS_READCOV.out.bw)
 
         UCSC_BIGWIGMERGE(DEEPTOOLS_READCOV.out.bw.collect())
+
+        UCSC_GET_SIZE(ch_hostgen)
+
+        UCSC_BED2BIGWIG(UCSC_BIGWIGMERGE.out.bed, UCSC_GET_SIZE.out.sizes)
 
 
 }
