@@ -46,7 +46,7 @@ process UCSC_GET_SIZE {
     """
 }
 
-process UCSC_ {
+process UCSC_BED2BIGWIG {
     label 'verylow'
     container 'ebird013/ucsc:1.0_amd64'
 
