@@ -109,3 +109,25 @@ process SAMTOOLS_BAMSORT{
     END_VERSIONS 
     """
 }
+
+process SAMTOOLS_BAMCAT{
+    label 'samtoolssort'
+    container 'ebird013/samtools:1.17'
+
+    input:
+        file(bams)
+    output:
+        path("${params.project_name}.bam"), emit: cat
+        path("versions.yml"), emit: versions
+
+    script:
+
+    """
+    samtools cat -o ${params.project_name}.bam ${bams}
+
+    cat <<-END_VERSIONS > versions.yml
+    "${task.process}":
+        Samtools: \$(samtools --version 2>&1 | grep "samtools " | sed -e "s/samtools //g")
+    END_VERSIONS 
+    """
+}
