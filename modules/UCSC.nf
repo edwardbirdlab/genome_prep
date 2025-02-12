@@ -35,7 +35,7 @@ process UCSC_GET_SIZE {
     container 'ebird013/ucsc:1.0_amd64'
 
     input:
-        file(fasta)
+        tuple val(sample), file(fasta)
     output:
         path("${params.project_name}_chrom.sizes"), emit: sizes
 

@@ -24,6 +24,7 @@ workflow BIGWIG_SW {
         ch_hostgen                  // channel: [val(sample), fasta]
 
     main:
+        ch_hostgen.view()
 
         ch_for_star= ch_fastqs.join(ch_hostgen)
 
@@ -45,7 +46,7 @@ workflow BIGWIG_SW {
 
         UCSC_BIGWIGMERGE(DEEPTOOLS_READCOV.out.bw.collect())
 
-        UCSC_GET_SIZE(ch_hostgen)
+        UCSC_GET_SIZE(ch_hostgen.first())
 
         UCSC_BED2BIGWIG(UCSC_BIGWIGMERGE.out.bed, UCSC_GET_SIZE.out.sizes)
 
