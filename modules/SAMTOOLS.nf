@@ -123,7 +123,7 @@ process SAMTOOLS_BAMCAT{
     script:
 
     """
-    samtools cat -o ${params.project_name}.bam ${bams}
+    samtools cat -o ${params.project_name}.bam *.bam
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
