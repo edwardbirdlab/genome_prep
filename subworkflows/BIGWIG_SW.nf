@@ -24,8 +24,6 @@ workflow BIGWIG_SW {
         ch_hostgen                  // channel: [val(sample), fasta]
 
     main:
-        ch_hostgen.view()
-
         ch_for_star= ch_fastqs.join(ch_hostgen)
 
         STAR(ch_for_star)
