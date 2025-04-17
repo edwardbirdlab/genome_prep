@@ -110,8 +110,8 @@ process SAMTOOLS_BAMSORT{
     """
 }
 
-process SAMTOOLS_BAMCAT{
-    label 'samtoolssort'
+process SAMTOOLS_MERGE{
+    label 'samtoolsmerge'
     container 'ebird013/samtools:1.17'
 
     input:
