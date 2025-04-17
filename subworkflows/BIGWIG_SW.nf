@@ -34,19 +34,19 @@ workflow BIGWIG_SW {
 
         SAMTOOLS_STATS(SAMTOOLS_BAMSORT.out.sort)
 
-        //SAMTOOLS_INDEX(SAMTOOLS_BAMSORT.out.sort)
+        SAMTOOLS_INDEX(SAMTOOLS_BAMSORT.out.sort)
 
-        //DEEPTOOLS_READCOV(SAMTOOLS_INDEX.out.index)
+        DEEPTOOLS_READCOV(SAMTOOLS_INDEX.out.index)
 
-        //DEEPTOOLS_READCOV_NORM(SAMTOOLS_INDEX.out.index)
+        DEEPTOOLS_READCOV_NORM(SAMTOOLS_INDEX.out.index)
 
-        //UCSC_BIGWIGINFO(DEEPTOOLS_READCOV.out.bw)
+        UCSC_BIGWIGINFO(DEEPTOOLS_READCOV.out.bw)
 
-        //UCSC_BIGWIGMERGE(DEEPTOOLS_READCOV.out.bw.collect())
+        UCSC_BIGWIGMERGE(DEEPTOOLS_READCOV.out.bw.collect())
 
-        //UCSC_GET_SIZE(ch_hostgen.first())
+        UCSC_GET_SIZE(ch_hostgen.first())
 
-        //UCSC_BED2BIGWIG(UCSC_BIGWIGMERGE.out.bed, UCSC_GET_SIZE.out.sizes)
+        UCSC_BED2BIGWIG(UCSC_BIGWIGMERGE.out.bed, UCSC_GET_SIZE.out.sizes)
 
-        //SAMTOOLS_BAMCAT(SAMTOOLS_BAMSORT.out.sort.collect())
+        SAMTOOLS_BAMCAT(SAMTOOLS_BAMSORT.out.sort.collect())
 }
