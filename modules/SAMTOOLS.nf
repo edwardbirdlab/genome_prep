@@ -123,7 +123,7 @@ process SAMTOOLS_BAMCAT{
     script:
 
     """
-    samtools cat -o ${params.project_name}.bam *.bam
+    samtools merge -@ ${task.cpus} -o ${params.project_name}.bam *.bam
 
     cat <<-END_VERSIONS > versions.yml
     "${task.process}":
