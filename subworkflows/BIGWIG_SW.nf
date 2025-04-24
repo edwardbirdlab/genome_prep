@@ -16,6 +16,7 @@ include { SAMTOOLS_BAMSORT as SAMTOOLS_BAMSORT } from '../modules/SAMTOOLS.nf'
 include { UCSC_GET_SIZE as UCSC_GET_SIZE } from '../modules/UCSC.nf'
 include { UCSC_BED2BIGWIG as UCSC_BED2BIGWIG } from '../modules/UCSC.nf'
 include { SAMTOOLS_MERGE as SAMTOOLS_MERGE } from '../modules/SAMTOOLS.nf'
+include { HISAT2 as HISAT2 } from '../modules/HISAT2.nf'
 
 workflow BIGWIG_SW {
     
@@ -24,7 +25,17 @@ workflow BIGWIG_SW {
         ch_hostgen                  // channel: [val(sample), fasta]
 
     main:
-        ch_for_star= ch_fastqs.join(ch_hostgen)
+        ch_for_align = ch_fastqs.join(ch_hostgen)
+
+        if (params.aligner == 'star') {
+            STAR(ch_for_align)
+            ch_aligned = STAR.out.sam
+        } else if (params.aligner == 'hisat2') {
+            HISAT2(ch_for_align)
+            ch_aligned = HISAT2.out.sam
+        } else {
+            error "Invalid aligner: ${params.aligner}. Supported aligners are 'star' and 'hisat2'."
+        }
 
         STAR(ch_for_star)
 
