@@ -37,9 +37,7 @@ workflow BIGWIG_SW {
             error "Invalid aligner: ${params.aligner}. Supported aligners are 'star' and 'hisat2'."
         }
 
-        STAR(ch_for_star)
-
-        SAMTOOLS_SAM2BAM(STAR.out.sam)
+        SAMTOOLS_SAM2BAM(ch_aligned)
 
         SAMTOOLS_BAMSORT(SAMTOOLS_SAM2BAM.out.bam)
 
