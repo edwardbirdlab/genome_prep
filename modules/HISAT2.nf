@@ -10,13 +10,13 @@ process HISAT2 {
     script:
 
     """
-    mkdir -p ${sample}_index
-
     mkdir -p temp
     export TMPDIR=\$(pwd)/temp
 
+    hisat2-build ${ref} index
+
     hisat2 -p ${task.cpus} \
-        -x ${sample}_index/genome \
+        -x index \
         -1 ${fq1} -2 ${fq2} \
         --dta \
         -S ${sample}_hisat2.sam
