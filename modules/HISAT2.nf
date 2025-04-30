@@ -22,6 +22,6 @@ process HISAT2 {
         -1 \$TMPDIR/${fq1} -2 \$TMPDIR/${fq2} \
         --dta \
         -S ${sample}_hisat2.sam \
-        -temp-directory \$TMPDIR/${sample}
+        --temp-directory \$TMPDIR/${sample}
     """
 }
