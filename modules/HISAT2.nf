@@ -10,15 +10,18 @@ process HISAT2 {
     script:
 
     """
-    mkdir -p temp
-    export TMPDIR=\$(pwd)/temp
+    mkdir -p \$TMPDIR/${sample}
+
+    cp ${fq1} \$TMPDIR
+    cp ${fq2} \$TMPDIR
 
     hisat2-build ${ref} index
 
     hisat2 -p ${task.cpus} \
         -x index \
-        -1 ${fq1} -2 ${fq2} \
+        -1 \$TMPDIR/${fq1} -2 \$TMPDIR/${fq2} \
         --dta \
-        -S ${sample}_hisat2.sam 
+        -S ${sample}_hisat2.sam \
+        -temp-directory \$TMPDIR/${sample}
     """
 }
