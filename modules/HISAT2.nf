@@ -2,6 +2,8 @@ process HISAT2 {
     label 'medmem'
     container 'https://depot.galaxyproject.org/singularity/mulled-v2-a97e90b3b802d1da3d6958e0867610c718cb5eb1:2cdf6bf1e92acbeb9b2834b1c58754167173a410-0'
 
+    scratch true
+
     input:
         tuple val(sample), file(fq1), file(fq2), file(ref)
     output:
